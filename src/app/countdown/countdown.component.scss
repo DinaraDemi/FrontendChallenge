@@ -1,0 +1,123 @@
+@import 'variables';
+
+.main-container {
+  font-family: $font-family;
+  color: $text-color;
+  background-color: $background-color;
+  height: 100dvh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 100px;
+}
+
+.event-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.event {
+  height: 150px;
+  color: $primary-color;
+}
+
+.countdown {
+  height: 95px;
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gap-large;
+
+  .input-group {
+    width: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-small;
+
+    &:first-child {
+      min-width: 30%;
+    }
+
+    label {
+      position: absolute;
+      top: -20%;
+      left: 8px;
+      font-size: $base-font-size;
+      background-color: $background-color;
+      padding: 0 5px;
+    }
+
+    input {
+      padding: $default-padding;
+      border: 1px solid #ddd;
+      border-radius: $input-border-radius;
+      font-size: $base-font-size;
+      background-color: $background-color;
+
+      &[type='date'] {
+        font-family: inherit;
+      }
+
+      &:focus {
+        outline: 2px solid $focus-outline;
+        outline-offset: 2px;
+      }
+
+      &[aria-invalid='true'] {
+        border-color: $error-color;
+      }
+    }
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .main-container {
+    gap: 10px;
+  }
+
+  .event-form {
+    flex-direction: row;
+    gap: $gap-small;
+
+    .input-group {
+      &:first-child {
+        min-width: 60%;
+      }
+    }
+  }
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: $input-border-radius;
+  cursor: pointer;
+  font-size: $base-font-size;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main-container {
+    gap: 100px;
+  }
+}

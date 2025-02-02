@@ -1,0 +1,58 @@
+<main class="main-container">
+  <section class="event-timer">
+    <section appFitText class="event">
+      <p aria-live="polite">Time to {{ displayedEventName }}</p>
+    </section>
+    <section appFitText class="countdown">
+      <p>
+        {{ countdown$ | async }}
+      </p>
+    </section>
+  </section>
+
+  <form
+    class="event-form"
+    (ngSubmit)="saveEventDetails()"
+    aria-label="Event details form"
+    novalidate
+  >
+    <div class="input-group">
+      <label for="eventTitle">Title</label>
+      <input
+        id="eventTitle"
+        type="text"
+        name="eventName"
+        [(ngModel)]="formState.eventName"
+        [maxlength]="FORM_CONSTRAINTS.titleMaxLength"
+        [attr.aria-label]="
+          'Event title, maximum ' + FORM_CONSTRAINTS.titleMaxLength + ' characters'
+        "
+        required
+        [attr.aria-invalid]="!formState.eventName && formSubmitted"
+        placeholder="Enter event title"
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="eventDate">Date</label>
+      <input
+        id="eventDate"
+        type="date"
+        name="endDate"
+        [(ngModel)]="formState.endDate"
+        [min]="FORM_CONSTRAINTS.minDate"
+        required
+        [attr.aria-invalid]="!formState.endDate && formSubmitted"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="submit-btn"
+      [disabled]="!formState.eventName || !formState.endDate"
+      aria-label="Submit event details"
+    >
+      Submit
+    </button>
+  </form>
+</main>
